@@ -1,0 +1,46 @@
+package com.sha;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.io.*;
+
+public class SHAGenerator {
+	private static MessageDigest _md;
+	private static final String SHA = "SHA-512";
+	
+	private SHAGenerator() {}
+	
+	// Binary to Hex
+	private static String bytes2Hex(byte[] bts) {
+		String des = "";
+		String tmp = null;
+		
+		for(int i = 0; i < bts.length; i++) {
+			tmp = (Integer.toHexString(bts[i] & 0xFF));
+			if (tmp.length() == 1) {
+				des += "0";
+			}
+			des += tmp;
+		}
+		return des;
+	}
+	
+	public static String GenSHA(File myFile) {
+		String strHex = "";
+		FileInputStream fips = null;
+		
+		try {
+			fips = new FileInputStream(myFile);
+			byte[] bt = new byte[fips.available()];	// Assign the size 
+			_md = MessageDigest.getInstance(SHA);
+			_md.update(bt);
+			strHex = bytes2Hex(_md.digest());
+			
+		}catch(NoSuchAlgorithmException aex) {
+			System.out.println(aex.getStackTrace());
+		}catch(Exception ex) {
+			System.out.println(ex.getStackTrace());
+		}
+		return strHex;
+	}
+}
