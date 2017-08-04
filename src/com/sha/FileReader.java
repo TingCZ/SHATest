@@ -8,6 +8,7 @@ import java.nio.channels.FileChannel;
 public class FileReader {
 	private static String _binLog;
 	private FileReader() {}
+	private static final FileReader FILE_READER = new FileReader();
 	
 	private static void BackupBinLog() {		
 		FileInputStream fi = null;
@@ -37,6 +38,10 @@ public class FileReader {
 		}
 	}
 	
+	public static FileReader getFileReader() {
+		return FILE_READER;
+	}
+
 	public static HashMap<String, String> ReadBinLog(String strBinLog){
 		_binLog = strBinLog;
 		BufferedReader reader = null;
@@ -58,6 +63,16 @@ public class FileReader {
 				tmpStrings = tmpString.split("\\|");
 				binHashMap.put(tmpStrings[0].trim(), tmpStrings[1].trim());
 			}
+			
+			// sort in aes
+			List<Map.Entry<String, String>> tmpList = new ArrayList<Map.Entry<String, String>>
+				(binHashMap.entrySet());
+			Collections.sort(tmpList, new Comparator<Map.Entry<String, String>>(){
+				public int compare(Map.Entry<String, String> lMap, Map.Entry<String, String> hMap) {
+					return (lMap.getKey().toString().compareTo(hMap.getKey()));
+				}
+			});
+			
 		}catch(IOException ex) {
 			ex.printStackTrace();
 		}finally {

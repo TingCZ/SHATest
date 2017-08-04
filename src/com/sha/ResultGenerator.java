@@ -17,6 +17,11 @@ public class ResultGenerator {
 		_diffs = diffs;
 	}
 	
+	
+	/*
+	 * file format
+	 * absolute path | modified datetime | binary size in byte | status(added, modified, deleted)
+	 */
 	public void generateDifference() {
 		File file = new File("C:\\Users\\Administrator\\Desktop\\backup\\diff" + 
 						new SimpleDateFormat("yyyyMMddHHmm").toString() + ".log");
@@ -36,8 +41,8 @@ public class ResultGenerator {
 			
 			while(it.hasNext()) {
 				tmpDiff = it.next();
-				writer.write(tmpDiff.get_binPath() + " | " + tmpDiff.get_modifiedDateTime() + 
-						" | " + tmpDiff.get_size());
+				writer.write(tmpDiff.getBinPath() + " | " + tmpDiff.getModifiedDateTime() + 
+						" | " + tmpDiff.getSize() + " | " + tmpDiff.getStatus());
 				writer.newLine();
 			}
 			writer.flush();
@@ -53,6 +58,11 @@ public class ResultGenerator {
 		}
 	}
 	
+	
+	/*
+	 * file format
+	 * absolute path | SHA-512 code
+	 */
 	public void generateResultLog(String strBinPath) {
 		File file = new File(strBinPath);
 		FileWriter fw = null;
@@ -62,6 +72,7 @@ public class ResultGenerator {
 		
 		if(file.exists()) 
 			file.delete();
+		
 		try {
 			file.createNewFile();
 			

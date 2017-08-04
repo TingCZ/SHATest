@@ -2,16 +2,18 @@ package com.sha;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.File;
 
 public class SHAGenerator {
-	private static MessageDigest _md;
-	private static final String SHA = "SHA-512";
+	private  MessageDigest _md;
+	private  final String SHA = "SHA-512";
 	
-	private SHAGenerator() {}
+	public SHAGenerator() {}
 	
 	// Binary to Hex
-	private static String bytes2Hex(byte[] bts) {
+	private String bytes2Hex(byte[] bts) {
 		String des = "";
 		String tmp = null;
 		
@@ -25,7 +27,7 @@ public class SHAGenerator {
 		return des;
 	}
 	
-	public static String GenSHA(File myFile) {
+	public String GenSHA(File myFile) {
 		String strHex = "";
 		FileInputStream fips = null;
 		
@@ -40,6 +42,12 @@ public class SHAGenerator {
 			System.out.println(aex.getStackTrace());
 		}catch(Exception ex) {
 			System.out.println(ex.getStackTrace());
+		}finally {
+			try {
+				fips.close();
+			}catch(IOException ex) {
+				ex.printStackTrace();
+			}
 		}
 		return strHex;
 	}
