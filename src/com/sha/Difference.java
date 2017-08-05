@@ -3,10 +3,10 @@ package com.sha;
 
 
 public class Difference {
-	private String _binPath;
-	private String _modifiedDateTime;
-	private long _size;
-	private String _status;
+	private String _binPath;	// absolute path
+	private String _modifiedDateTime;	// modified datetime
+	private long _size;	// the size of binary in byte
+	private String _status;	// the status of binary
 	
 	public Difference(String binPath, String modifiedDateTime, long size, String status) {
 		_binPath = binPath;

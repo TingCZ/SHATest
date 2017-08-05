@@ -11,7 +11,7 @@ public class FileScanner {
 	
 	private FileScanner() {}
 	// each directory which would contain sub-folders
-	private static void getBinariesSHA512(File[] myFiles){
+	private void getBinariesSHA512(File[] myFiles){
 		for(File tmpFile : myFiles) {
 			if(tmpFile.isFile()) {
 				_binariesMap.put(tmpFile.getAbsolutePath(), _shaGenerator.GenSHA(tmpFile));
@@ -25,11 +25,12 @@ public class FileScanner {
 	}
 	
 	// scan directories configured. 
-	public static HashMap<String, String> getDirsSHA512(List<String> dirPaths){
+	public  HashMap<String, String> getDirsSHA512(List<String> dirPaths){
 		for(int i = 0; i < dirPaths.size(); i++) {
 			getBinariesSHA512(new File(dirPaths.get(i)).listFiles());
 		}
 		
+		/*
 		// sort in aes
 		List<Map.Entry<String, String>> tmpList = new ArrayList<Map.Entry<String, String>>
 						(_binariesMap.entrySet());
@@ -38,7 +39,11 @@ public class FileScanner {
 					return (lMap.getKey().toString().compareTo(hMap.getKey()));
 				}
 		});
-
+		*/
+		return _binariesMap;
+	}
+	
+	public Map<String, String> getBinariesMap(){
 		return _binariesMap;
 	}
 	

@@ -2,15 +2,14 @@ package com.sha;
 
 import java.io.*;
 import java.util.*;
-import java.text.SimpleDateFormat;
-import java.nio.channels.FileChannel;  
 
 public class FileReader {
 	private static String _binLog;
 	private FileReader() {}
 	private static final FileReader FILE_READER = new FileReader();
 	
-	private static void BackupBinLog() {		
+	/*
+	private void BackupBinLog() {		
 		FileInputStream fi = null;
 		FileOutputStream fo = null;
 		FileChannel inCha = null;
@@ -18,8 +17,8 @@ public class FileReader {
 		
 		try {
 			fi = new FileInputStream(new File(_binLog));
-			fo = new FileOutputStream(new File("C:\\Users\\Administrator\\Desktop\\logs\bin_" + 
-						new SimpleDateFormat("yyyyMMddHHmm").toString() + ".log" ));
+			fo = new FileOutputStream(new File("C:\\Users\\Administrator\\Desktop\\logs\binariesLog_" + 
+						new SimpleDateFormat("yyyyMMddHHmm").toString() + ".log" )); // backup path
 			
 			inCha = fi.getChannel();
 			outCha = fo.getChannel();
@@ -37,12 +36,13 @@ public class FileReader {
 			}
 		}
 	}
+	*/
 	
 	public static FileReader getFileReader() {
 		return FILE_READER;
 	}
 
-	public static HashMap<String, String> ReadBinLog(String strBinLog){
+	public HashMap<String, String> ReadBinLog(String strBinLog){
 		_binLog = strBinLog;
 		BufferedReader reader = null;
 		String tmpString = null;
@@ -50,9 +50,7 @@ public class FileReader {
 		FileInputStream fips = null;
 		InputStreamReader ipsr = null;
 		HashMap<String, String> binHashMap = null;
-		
-		BackupBinLog();
-		
+				
 		try {
 			fips = new FileInputStream (new File(_binLog));
 			ipsr = new InputStreamReader(fips);
@@ -61,9 +59,10 @@ public class FileReader {
 			
 			while((tmpString = reader.readLine())!= null) {
 				tmpStrings = tmpString.split("\\|");
-				binHashMap.put(tmpStrings[0].trim(), tmpStrings[1].trim());
+				binHashMap.put(tmpStrings[0], tmpStrings[1]);
 			}
 			
+			/*
 			// sort in aes
 			List<Map.Entry<String, String>> tmpList = new ArrayList<Map.Entry<String, String>>
 				(binHashMap.entrySet());
@@ -72,7 +71,7 @@ public class FileReader {
 					return (lMap.getKey().toString().compareTo(hMap.getKey()));
 				}
 			});
-			
+			*/
 		}catch(IOException ex) {
 			ex.printStackTrace();
 		}finally {

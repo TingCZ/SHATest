@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.io.File;
 
 public class SHAGenerator {
-	private  MessageDigest _md;
-	private  final String SHA = "SHA-512";
+	private MessageDigest _md;
+	private final String SHA = "SHA-512";
 	
 	public SHAGenerator() {}
 	
