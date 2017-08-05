@@ -49,8 +49,7 @@ public class BinariesComparator {
 			if(!scannerMap.containsKey(tmpReaderMap.getKey())){
 				// item deleted
 				tmpFile = new File(tmpReaderMap.getKey());
-				_diffs.add(new Difference(tmpReaderMap.getKey(), lastModifiedDateTime.format(
-						new Date(tmpFile.lastModified())), tmpFile.length(), DELETED));
+				_diffs.add(new Difference(tmpReaderMap.getKey(), "", tmpFile.length(), DELETED));
 			}
 		}
 	}

@@ -61,17 +61,6 @@ public class FileReader {
 				tmpStrings = tmpString.split("\\|");
 				binHashMap.put(tmpStrings[0], tmpStrings[1]);
 			}
-			
-			/*
-			// sort in aes
-			List<Map.Entry<String, String>> tmpList = new ArrayList<Map.Entry<String, String>>
-				(binHashMap.entrySet());
-			Collections.sort(tmpList, new Comparator<Map.Entry<String, String>>(){
-				public int compare(Map.Entry<String, String> lMap, Map.Entry<String, String> hMap) {
-					return (lMap.getKey().toString().compareTo(hMap.getKey()));
-				}
-			});
-			*/
 		}catch(IOException ex) {
 			ex.printStackTrace();
 		}finally {

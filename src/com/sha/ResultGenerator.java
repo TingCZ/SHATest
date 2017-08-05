@@ -126,10 +126,10 @@ public class ResultGenerator {
 			ioex.printStackTrace();
 		}finally{
 			try {
-			fi.close();
-			fo.close();
-			inCha.close();
-			outCha.close();
+				fi.close();
+				fo.close();
+				inCha.close();
+				outCha.close();
 			}catch(IOException ex) {
 				ex.printStackTrace();
 			}

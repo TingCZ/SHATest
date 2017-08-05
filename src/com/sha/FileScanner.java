@@ -30,16 +30,6 @@ public class FileScanner {
 			getBinariesSHA512(new File(dirPaths.get(i)).listFiles());
 		}
 		
-		/*
-		// sort in aes
-		List<Map.Entry<String, String>> tmpList = new ArrayList<Map.Entry<String, String>>
-						(_binariesMap.entrySet());
-		Collections.sort(tmpList, new Comparator<Map.Entry<String, String>>(){
-				public int compare(Map.Entry<String, String> lMap, Map.Entry<String, String> hMap) {
-					return (lMap.getKey().toString().compareTo(hMap.getKey()));
-				}
-		});
-		*/
 		return _binariesMap;
 	}
 	

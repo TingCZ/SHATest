@@ -49,8 +49,5 @@ public class ShaTest {
 		String s = ShaTest.encrypt(file, "SHA-512");
 		System.out.println("Output is ");
 		System.out.println(s);
-		//HashMap<String , Double> map = new HashMap<String , Double>(); 
 	}
-	
-	
 }

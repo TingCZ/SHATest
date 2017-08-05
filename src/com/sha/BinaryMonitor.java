@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 public class BinaryMonitor {
 	
 	public static void main(String args[]) {
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSSS");
 		System.out.println("Program Started: " + df.format(new Date()));
 		
 		// the directories of the binaries
